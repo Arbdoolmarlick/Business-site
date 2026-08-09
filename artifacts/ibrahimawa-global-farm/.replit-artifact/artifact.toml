@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Ibrahimawa Global & Farm"
+description = "A premium responsive company website for Ibrahimawa Global and Farm (IGAF) Limited, helping Nigerian farmers discover reliable agricultural machinery and request enquiries."
+version = "1.0.0"
+id = "artifacts/ibrahimawa-global-farm"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 20350
+
+[services.development]
+run = "pnpm --filter @workspace/ibrahimawa-global-farm run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ibrahimawa-global-farm", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ibrahimawa-global-farm/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "20350"
+BASE_PATH = "/"

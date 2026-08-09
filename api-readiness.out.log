@@ -1,0 +1,29 @@
+
+> @workspace/api-server@0.0.0 start C:\Users\PC\Desktop\igaf-website-main\artifacts\api-server
+> node --enable-source-maps ./dist/index.mjs
+
+[20:57:16.354] [32mINFO[39m (17696): [36mServer listening[39m
+    [35mport[39m: 5190
+[20:57:18.225] [32mINFO[39m (17696): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 1,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 15
+[20:57:46.647] [32mINFO[39m (17696): [36mrequest completed[39m
+    [35mreq[39m: {
+      "id": 2,
+      "method": "GET",
+      "url": "/api/healthz"
+    }
+    [35mres[39m: {
+      "statusCode": 200
+    }
+    [35mresponseTime[39m: 2
+C:\Users\PC\Desktop\igaf-website-main\artifacts\api-server:
+ ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL  @workspace/api-server@0.0.0 start: `node --enable-source-maps ./dist/index.mjs`
+Exit status 4294967295

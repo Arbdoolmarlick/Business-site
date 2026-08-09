@@ -1,0 +1,158 @@
+# Prompt: Build a Modern Company Website for Ibrahimawa Global and Farm (IGAF) Limited
+
+Create a premium, responsive, and professional company website for **IBRAHIMAWA GLOBAL AND FARM (IGAF) LIMITED**, an agricultural equipment and machinery company in Nigeria.
+
+The website should inspire trust, look modern, and feel like a real corporate business. Use a clean design with a green, white, and gold color palette that reflects agriculture, sustainability, and professionalism.
+
+## Design Style
+
+* Modern and elegant
+* Mobile-first responsive design
+* Smooth scrolling and subtle animations
+* Large hero section with high-quality agricultural imagery
+* Rounded cards and soft shadows
+* Professional typography
+* Fast loading
+* Accessible design
+* Clean navigation bar
+* Sticky header
+* Footer with company information
+
+## Navigation
+
+* Home
+* About Us
+* Products
+* Why Choose Us
+* Gallery
+* Contact
+
+## Hero Section
+
+Headline:
+
+**Empowering Modern Agriculture with Quality Farm Machinery**
+
+Subheading:
+
+"We supply reliable agricultural machines and equipment that help farmers increase productivity, reduce manual labor, and grow successful businesses."
+
+Buttons:
+
+* View Products
+* Contact Us
+
+Background:
+
+A beautiful rice farm with modern agricultural machinery working in the field.
+
+## About Section
+
+Title:
+
+**About Ibrahimawa Global and Farm (IGAF) Limited**
+
+Content:
+
+Introduce the company as a trusted supplier of agricultural machinery dedicated to supporting farmers with durable, efficient, and affordable farming equipment. Emphasize quality, customer satisfaction, innovation, and helping improve agricultural productivity across Nigeria.
+
+## Products Section
+
+Display products as beautiful cards with realistic images, icons, and short descriptions.
+
+Products include:
+
+* Rice Mill
+* Hammer Mill
+* 13HP Power Tiller
+* 18HP Power Tiller
+* Multipurpose Thrasher
+* Corn Thrasher
+* Multipurpose Cleaner
+* Solar Water Pump
+* Electric Grinding Machine
+* Rice Reaper (correct the spelling if "Rice Riffer" was intended to mean Rice Reaper)
+
+Each card should contain:
+
+* Large image
+* Product name
+* Short description
+* "Contact for Enquiry" button
+
+No prices.
+
+## Why Choose Us
+
+Show feature cards with icons.
+
+* Quality Machinery
+* Affordable Solutions
+* Reliable Customer Support
+* Trusted by Farmers
+* Durable Equipment
+* Nationwide Delivery
+
+## Gallery
+
+Display a responsive grid of farming machinery, rice processing, tractors, tillers, farmers using equipment, irrigation systems, and agricultural fields.
+
+## Call to Action
+
+Large banner:
+
+**Ready to Improve Your Farm?**
+
+Text:
+
+"Talk to our team today and discover the right equipment for your agricultural needs."
+
+Button:
+
+Contact Us
+
+## Contact Section
+
+Include:
+
+* Company Name
+* Phone Number
+* WhatsApp Button
+* Email Address
+* Office Address
+* Google Maps placeholder
+* Contact Form
+
+Fields:
+
+* Name
+* Phone
+* Email
+* Message
+
+## Footer
+
+Include:
+
+* Company logo
+* Quick links
+* Products
+* Contact information
+* Copyright
+
+## Extra Features
+
+* Scroll animations
+* Hover effects
+* Image lightbox for gallery
+* Floating WhatsApp button
+* Back-to-top button
+* SEO-friendly HTML
+* Optimized images
+* Responsive on desktop, tablet, and mobile
+* Clean React components with reusable structure
+* Tailwind CSS
+* Lucide React icons
+* Professional code organization
+
+The website is **informational only**. Visitors cannot purchase products online. Every product should direct visitors to contact the company for enquiries and quotations.
