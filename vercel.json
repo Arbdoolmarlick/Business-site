@@ -3,5 +3,5 @@
   "framework": "vite",
   "installCommand": "pnpm install --frozen-lockfile",
   "buildCommand": "pnpm --filter @workspace/ibrahimawa-global-farm run build",
-  "outputDirectory": "artifacts/ibrahimawa-global-farm/dist"
+  "outputDirectory": "./artifacts/ibrahimawa-global-farm/dist"
 }
