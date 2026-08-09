@@ -1,6 +1,6 @@
 # Deployment
 
-This project is configured for an Autoscale deployment. The Express service serves both the API and the production Vite site from one process.
+The production website is a Vite static site. The root `vercel.json` builds the website and deploys `artifacts/ibrahimawa-global-farm/dist/public`.
 
 ## Commands
 
@@ -10,13 +10,13 @@ This project is configured for an Autoscale deployment. The Express service serv
 - Production dependency audit: `pnpm run audit:prod`
 - Full release check: `pnpm run release:check`
 
-The deployment build and start commands are also declared in `.replit`.
+For Vercel, keep the Project Root Directory set to the repository root. The prior failed deployment used `artifacts/api-server` as its root, which builds the API rather than the website.
 
 ## Environment settings
 
 | Variable | Required | Purpose |
 | --- | --- | --- |
-| `PORT` | Set by the deployment host | HTTP port used by the Express service. Defaults to `5000` locally. |
+| `PORT` | No for Vercel static deployments | Port used when running the local API or development server. The API defaults to `5000`; Vite defaults to `5173`. |
 | `BASE_PATH` | No | Public base path for the Vite site. Defaults to `/`. |
 | `DATABASE_URL` | Only when database-backed API routes are enabled | PostgreSQL connection string. Do not commit this value. |
 
