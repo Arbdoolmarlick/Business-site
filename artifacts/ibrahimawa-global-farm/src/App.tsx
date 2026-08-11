@@ -5,16 +5,19 @@ import { ArrowDownRight, ArrowUp, Check, ChevronRight, Clock3, Factory, HardHat,
 type Product = { name: string; description: string; image: string };
 
 const products: Product[] = [
-  { name: 'Rice Mill', description: 'A dependable path from harvested paddy to market-ready rice.', image: '/maize-mill-processing.jpg' },
-  { name: 'Hammer Mill', description: 'Consistent milling for grain, feed and the work between.', image: '/grain-mill-workshop.jpg' },
-  { name: '13HP Power Tiller', description: 'Compact power for smallholder plots and prepared soil.', image: '/power-tiller-field.jpg' },
-  { name: '18HP Power Tiller', description: 'More pulling power when the acreage asks for it.', image: '/power-tiller-field.jpg' },
-  { name: 'Multipurpose Thrasher', description: 'Reduce post-harvest effort across a range of crops.', image: '/hero-farm.jpg' },
-  { name: 'Corn Thrasher', description: 'Move corn from field to storage with less waste.', image: '/hero-farm.jpg' },
-  { name: 'Grain Seed Cleaner & Grader', description: 'Clean and grade grain or seed for a more uniform, market-ready result.', image: '/maize-mill-processing.jpg' },
-  { name: 'Solar Water Pump', description: 'Bring reliable water closer to the crop, sustainably.', image: '/power-tiller-field.jpg' },
-  { name: 'Electric Grinding Machine', description: 'A practical workhorse for everyday processing.', image: '/maize-mill-compact.jpg' },
-  { name: 'Rice Reaper', description: 'Harvesting equipment built around speed and reduced loss.', image: '/hero-farm.jpg' },
+  { name: 'Grain Thresher', description: 'Separate grain from crop heads efficiently after harvest.', image: '/multipurpose-thrasher.png' },
+  { name: 'Hammer Mill', description: 'Consistent milling for grain, feed and the work between.', image: '/hammer-mill.jpg' },
+  { name: 'Grain Mill', description: 'Process grain into consistent, ready-to-use flour or meal.', image: '/rice-mill.jpg' },
+  { name: 'Chaff Cutter / Forage Cutter', description: 'Cut fodder to a practical size for livestock feeding.', image: '/chaff-cutter.webp' },
+  { name: 'Two-Wheel Tractor / Power Tiller', description: 'Compact power for smallholder plots and prepared soil.', image: '/power-tiller-18hp.webp' },
+  { name: 'Farm Trailer', description: 'Move harvests, inputs and equipment reliably across the farm.', image: '/farm-trailer.jpg' },
+  { name: 'Feed Mixer / Processor', description: 'Blend feed ingredients efficiently for more consistent rations.', image: '/feed-mixer-processor.webp' },
+  { name: 'Ridger / Plough Attachment', description: 'Create uniform ridges and furrows for productive planting beds.', image: '/ridger-plough.jpg' },
+  { name: 'Solar Water Pump', description: 'Bring dependable water closer to the crop and livestock.', image: '/solar-water-pump.webp' },
+  { name: 'Agricultural Seeder / Planter', description: 'Place seed more consistently for stronger crop establishment.', image: '/agricultural-seeder-planter.png' },
+  { name: 'Rotary / Soil-Working Attachment', description: 'Break up and prepare soil for a clean, workable seedbed.', image: '/rotary-soil-attachment.jpg' },
+  { name: 'Agricultural Processing Machines', description: 'Practical machinery for cleaning, grading, milling and more.', image: '/workshop-machinery.jpg' },
+  { name: 'Multipurpose Cleaner', description: 'Remove dust, chaff and unwanted material for cleaner, market-ready grain.', image: '/multipurpose-cleaner.png' },
 ];
 
 const reasons = [
@@ -124,11 +127,11 @@ function App() {
     }, 500);
   }
   const gallery = [
-    { image: '/hero-farm.jpg', label: 'Field-ready equipment', product: products[0] },
-    { image: '/workshop-machinery.jpg', label: 'The work behind the work', product: products[1] },
-    { image: '/power-tiller-field.jpg', label: 'Power in the soil', product: products[2] },
-    { image: '/hero-farm.jpg', label: 'Harvest with less loss', product: products[9] },
-    { image: '/workshop-machinery.jpg', label: 'Made for processing', product: products[6] },
+    { image: '/power-tiller-18hp.webp', label: 'Field-ready equipment', product: products[4] },
+    { image: '/workshop-machinery.jpg', label: 'The work behind the work', product: products[11] },
+    { image: '/rotary-soil-attachment.jpg', label: 'Power in the soil', product: products[10] },
+    { image: '/multipurpose-thrasher.png', label: 'Harvest with less loss', product: products[0] },
+    { image: '/feed-mixer-processor.webp', label: 'Made for processing', product: products[6] },
   ];
   return <div className="site-shell grain" id="home">
     <Header open={menuOpen} setOpen={setMenuOpen} />
@@ -150,7 +153,7 @@ function App() {
       <section className="split-story" style={{ background: 'hsl(var(--background))' }}><div className="story-copy" style={{ background: 'hsl(147 35% 22%)', color: 'hsl(var(--primary-foreground))' }}><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>The bigger picture</span><h2>Productivity<br />that leaves<br /><em>something behind.</em></h2><p style={{ color: 'hsl(var(--primary-foreground) / .68)' }}>From solar-powered water to efficient processing, the right machinery can help farms grow while using resources with care.</p><div style={{ display: 'flex', gap: 20, marginTop: 34 }}><div><Leaf color="hsl(var(--secondary))" size={22} /><p className="mono" style={{ color: 'hsl(var(--primary-foreground) / .7)' }}>Resource-aware</p></div><div><Factory color="hsl(var(--secondary))" size={22} /><p className="mono" style={{ color: 'hsl(var(--primary-foreground) / .7)' }}>Built to work</p></div></div></div><div className="workshop-image" role="img" aria-label="Close-up of agricultural machinery in a workshop" /></section>
       <section className="gallery section-pad" id="gallery"><div className="container-wide"><div className="section-heading reveal"><div><span className="eyebrow">On the ground</span><h2>A closer look at<br /><em>the work.</em></h2></div><p>See the environments and details that shape our view of agricultural equipment.</p></div><div className="gallery-grid">{gallery.map((item, index) => <button className="gallery-item reveal" key={`${item.label}-${index}`} onClick={() => setLightbox(item.product)} data-testid={`button-gallery-${index + 1}`}><img src={item.image} alt={item.label} /><span>{item.label} <ChevronRight size={13} style={{ verticalAlign: 'middle' }} /></span></button>)}</div></div></section>
       <section className="cta-band"><div className="container-wide cta-grid reveal"><div><span className="eyebrow">Your next move</span><h2>Let’s talk about<br />what could work.</h2></div><a className="button-light" href="#contact" data-testid="link-cta-contact">Start a conversation <ArrowDownRight size={16} /></a></div></section>
-      <section className="contact section-pad" id="contact"><div className="container-wide contact-grid"><div className="reveal"><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>Contact IGAF</span><h2>Tell us what<br /><em>you’re building.</em></h2><p className="contact-intro">Whether you are preparing your first field, expanding a processing line or looking for a better way to harvest, our team is ready to hear the full picture.</p><div className="contact-details"><div className="contact-detail"><Phone size={17} /><div><b>Call the team</b><span>+234 810 080 9016</span></div></div><div className="contact-detail"><Mail size={17} /><div><b>Send an email</b><span>ibrahimawafarms@gmail.com</span></div></div><div className="contact-detail"><Clock3 size={17} /><div><b>Office hours</b><span>Every day, 7:00am–8:00pm WAT</span></div></div></div></div><div className="contact-form reveal delay-1"><ContactForm /></div></div><div className="container-wide map-card reveal"><a className="map-label" href="https://maps.app.goo.gl/HQAMXdP8y18sVP3h9" target="_blank" rel="noreferrer" data-testid="link-map-location"><MapPin size={15} />View our precise location on Google Maps</a></div></section>
+      <section className="contact section-pad" id="contact"><div className="container-wide contact-grid"><div className="reveal"><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>Contact IGAF</span><h2>Tell us what<br /><em>you’re building.</em></h2><p className="contact-intro">Whether you are preparing your first field, expanding a processing line or looking for a better way to harvest, our team is ready to hear the full picture.</p><div className="contact-details"><div className="contact-detail"><Phone size={17} /><div><b>Call the team</b><span>+234 810 080 9016</span></div></div><div className="contact-detail"><Mail size={17} /><div><b>Send an email</b><span>ibrahimawafarms@gmail.com</span></div></div><div className="contact-detail"><Clock3 size={17} /><div><b>Office hours</b><span>Every day, 7:00am–8:00pm WAT</span></div></div></div></div><div className="contact-form reveal delay-1"><ContactForm /></div></div><div className="container-wide map-card reveal"><div className="map-terrain" aria-hidden="true"><span className="map-route route-one" /><span className="map-route route-two" /><span className="map-place">IGAF · Keffi, Nasarawa</span><span className="map-coordinate">8.830252° N &nbsp; 7.878581° E</span></div><a className="map-pin" href="https://maps.app.goo.gl/HQAMXdP8y18sVP3h9" target="_blank" rel="noreferrer" aria-label="Open IGAF location in Google Maps" data-testid="link-map-pin"><MapPin size={28} fill="currentColor" /></a><a className="map-label" href="https://maps.app.goo.gl/HQAMXdP8y18sVP3h9" target="_blank" rel="noreferrer" data-testid="link-map-location"><MapPin size={15} />View our precise location on Google Maps</a></div></section>
     </main>
     <footer className="footer"><div className="container-wide footer-inner"><span>© {new Date().getFullYear()} Ibrahimawa Global and Farm (IGAF) Limited.</span><span>Equipment for the work that feeds us.</span><a href="#home" data-testid="link-footer-top">Back to top <ArrowUp size={13} style={{ verticalAlign: 'middle' }} /></a></div></footer>
     <a className="whatsapp" href="https://wa.me/2347047197737" target="_blank" rel="noreferrer" aria-label="Chat with IGAF on WhatsApp" data-testid="link-whatsapp"><MessageCircle size={24} /></a>
