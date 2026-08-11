@@ -5,15 +5,15 @@ import { ArrowDownRight, ArrowUp, Check, ChevronRight, Clock3, Factory, HardHat,
 type Product = { name: string; description: string; image: string };
 
 const products: Product[] = [
-  { name: 'Rice Mill', description: 'A dependable path from harvested paddy to market-ready rice.', image: '/hero-farm.jpg' },
-  { name: 'Hammer Mill', description: 'Consistent milling for grain, feed and the work between.', image: '/workshop-machinery.jpg' },
+  { name: 'Rice Mill', description: 'A dependable path from harvested paddy to market-ready rice.', image: '/maize-mill-processing.jpg' },
+  { name: 'Hammer Mill', description: 'Consistent milling for grain, feed and the work between.', image: '/grain-mill-workshop.jpg' },
   { name: '13HP Power Tiller', description: 'Compact power for smallholder plots and prepared soil.', image: '/power-tiller-field.jpg' },
   { name: '18HP Power Tiller', description: 'More pulling power when the acreage asks for it.', image: '/power-tiller-field.jpg' },
   { name: 'Multipurpose Thrasher', description: 'Reduce post-harvest effort across a range of crops.', image: '/hero-farm.jpg' },
   { name: 'Corn Thrasher', description: 'Move corn from field to storage with less waste.', image: '/hero-farm.jpg' },
-  { name: 'Multipurpose Cleaner', description: 'Cleaner produce, clearer margins, better presentation.', image: '/workshop-machinery.jpg' },
+  { name: 'Grain Seed Cleaner & Grader', description: 'Clean and grade grain or seed for a more uniform, market-ready result.', image: '/maize-mill-processing.jpg' },
   { name: 'Solar Water Pump', description: 'Bring reliable water closer to the crop, sustainably.', image: '/power-tiller-field.jpg' },
-  { name: 'Electric Grinding Machine', description: 'A practical workhorse for everyday processing.', image: '/workshop-machinery.jpg' },
+  { name: 'Electric Grinding Machine', description: 'A practical workhorse for everyday processing.', image: '/maize-mill-compact.jpg' },
   { name: 'Rice Reaper', description: 'Harvesting equipment built around speed and reduced loss.', image: '/hero-farm.jpg' },
 ];
 
