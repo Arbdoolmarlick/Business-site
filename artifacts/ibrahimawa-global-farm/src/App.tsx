@@ -5,19 +5,19 @@ import { ArrowDownRight, ArrowUp, Check, ChevronRight, Clock3, Factory, HardHat,
 type Product = { name: string; description: string; image: string };
 
 const products: Product[] = [
-  { name: 'Grain Thresher', description: 'Separate grain from crop heads efficiently after harvest.', image: '/multipurpose-thrasher.png' },
+  { name: 'Multipurpose Thrasher', description: 'Separate grain from crop heads efficiently after harvest.', image: '/multipurpose-thrasher.jpg' },
   { name: 'Hammer Mill', description: 'Consistent milling for grain, feed and the work between.', image: '/hammer-mill.jpg' },
-  { name: 'Grain Mill', description: 'Process grain into consistent, ready-to-use flour or meal.', image: '/rice-mill.jpg' },
-  { name: 'Chaff Cutter / Forage Cutter', description: 'Cut fodder to a practical size for livestock feeding.', image: '/chaff-cutter.webp' },
-  { name: 'Two-Wheel Tractor / Power Tiller', description: 'Compact power for smallholder plots and prepared soil.', image: '/power-tiller-18hp.webp' },
-  { name: 'Farm Trailer', description: 'Move harvests, inputs and equipment reliably across the farm.', image: '/farm-trailer.jpg' },
-  { name: 'Feed Mixer / Processor', description: 'Blend feed ingredients efficiently for more consistent rations.', image: '/feed-mixer-processor.webp' },
-  { name: 'Ridger / Plough Attachment', description: 'Create uniform ridges and furrows for productive planting beds.', image: '/ridger-plough.jpg' },
+  { name: 'Rice Mill', description: 'Process grain into consistent, ready-to-use flour or meal.', image: '/rice-mill.png' },
+  { name: 'Corn Thrasher', description: 'Separate corn kernels efficiently after harvest.', image: '/corn-thrasher.png' },
+  { name: '13HP Power Tiller', description: 'Compact power for smallholder plots and prepared soil.', image: '/power-tiller-13hp.webp' },
+  { name: '18HP Power Tiller', description: 'Reliable power for larger field preparation and cultivation work.', image: '/power-tiller-18hp.png' },
+  { name: 'Multipurpose Milling and Thrashing Machine', description: 'Mill and thresh crops efficiently with one practical machine.', image: '/multipurpose-milling-thrashing-machine.png' },
+  { name: 'Hammer Mill and Grain Grinder', description: 'Grind grain efficiently for feed, flour, and processing work.', image: '/hammer-mill-grain-grinder.png' },
   { name: 'Solar Water Pump', description: 'Bring dependable water closer to the crop and livestock.', image: '/solar-water-pump.webp' },
-  { name: 'Agricultural Seeder / Planter', description: 'Place seed more consistently for stronger crop establishment.', image: '/agricultural-seeder-planter.png' },
-  { name: 'Rotary / Soil-Working Attachment', description: 'Break up and prepare soil for a clean, workable seedbed.', image: '/rotary-soil-attachment.jpg' },
-  { name: 'Agricultural Processing Machines', description: 'Practical machinery for cleaning, grading, milling and more.', image: '/workshop-machinery.jpg' },
-  { name: 'Multipurpose Cleaner', description: 'Remove dust, chaff and unwanted material for cleaner, market-ready grain.', image: '/multipurpose-cleaner.png' },
+  { name: 'Rice Riffer', description: 'Harvest rice efficiently with a practical field-ready machine.', image: '/rice-riffer.png' },
+  { name: 'Electric Combined Rice Miller and Powder Crusher', description: 'Mill rice and process grain into powder with one efficient machine.', image: '/electric-rice-mill-powder-crusher.png' },
+  { name: 'Electric Grinding Machine', description: 'Practical machinery for cleaning, grading, milling and more.', image: '/electric-grinding-machine.jpg' },
+  { name: 'Multipurpose Cleaner', description: 'Remove dust, chaff and unwanted material for cleaner, market-ready grain.', image: '/multipurpose-cleaner.jpeg' },
 ];
 
 const reasons = [
@@ -84,23 +84,55 @@ function ProductCard({ product, index, onOpen }: { product: Product; index: numb
 function ContactForm() {
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
-  function submit(event: FormEvent<HTMLFormElement>) {
+  const [error, setError] = useState<string | null>(null);
+
+  async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    const form = event.currentTarget;
+    if (!form.checkValidity()) {
+      form.reportValidity();
+      return;
+    }
+
     setSending(true);
-    window.setTimeout(() => { setSending(false); setSent(true); }, 700);
+    setError(null);
+
+    const fields = new FormData(form);
+    const inquiry = Object.fromEntries(fields.entries());
+
+    try {
+      const response = await fetch('/api/inquiry', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(inquiry),
+      });
+      const result = await response.json().catch(() => null) as { message?: string } | null;
+
+      if (!response.ok) {
+        throw new Error(result?.message || 'We could not send your enquiry. Please try again.');
+      }
+
+      form.reset();
+      setSent(true);
+    } catch (submissionError) {
+      setError(submissionError instanceof Error ? submissionError.message : 'We could not send your enquiry. Please try again.');
+    } finally {
+      setSending(false);
+    }
   }
-  if (sent) return <div className="success-message" data-testid="status-form-success"><span className="success-icon"><Check size={26} /></span><h3 className="serif" style={{ fontSize: '2.2rem', margin: 0 }}>Enquiry received.</h3><p style={{ color: 'hsl(var(--primary-foreground) / .65)', margin: 0 }}>Thank you. A member of the IGAF team will be in touch shortly.</p><button className="button-primary" onClick={() => setSent(false)} data-testid="button-send-another">Send another enquiry</button></div>;
+  if (sent) return <div className="success-message" data-testid="status-form-success"><span className="success-icon"><Check size={26} /></span><h3 className="serif" style={{ fontSize: '2.2rem', margin: 0 }}>Enquiry received.</h3><p style={{ color: 'hsl(var(--primary-foreground) / .65)', margin: 0 }}>Thank you. A member of the IGAF team will be in touch shortly.</p><button className="button-primary" onClick={() => { setSent(false); setError(null); }} data-testid="button-send-another">Send another enquiry</button></div>;
   return <form onSubmit={submit} data-testid="form-contact">
     <div className="form-row">
       <div className="field"><label htmlFor="name">Your name</label><input id="name" name="name" required placeholder="Full name" data-testid="input-name" /></div>
       <div className="field"><label htmlFor="phone">Phone number</label><input id="phone" name="phone" required placeholder="+234 ..." data-testid="input-phone" /></div>
     </div>
     <div className="form-row">
-      <div className="field"><label htmlFor="email">Email address</label><input id="email" type="email" name="email" required placeholder="you@company.com" data-testid="input-email" /></div>
-      <div className="field"><label htmlFor="interest">I am interested in</label><select id="interest" name="interest" defaultValue="" data-testid="select-interest"><option value="" disabled>Select a machine</option>{products.map((product) => <option value={product.name} key={product.name}>{product.name}</option>)}</select></div>
+      <div className="field"><label htmlFor="email">Email address</label><input id="email" type="email" name="email" required maxLength={254} placeholder="you@company.com" data-testid="input-email" /></div>
+      <div className="field"><label htmlFor="interest">I am interested in</label><select id="interest" name="interest" required defaultValue="" data-testid="select-interest"><option value="" disabled>Select a machine</option>{products.map((product) => <option value={product.name} key={product.name}>{product.name}</option>)}</select></div>
     </div>
     <div className="field"><label htmlFor="message">Tell us about your operation</label><textarea id="message" name="message" required placeholder="Crop, farm size or what you need the machine to do..." data-testid="textarea-message" /></div>
     <button className="button-primary" type="submit" disabled={sending} data-testid="button-submit-enquiry">{sending ? 'Sending enquiry...' : <>Send enquiry <ArrowDownRight size={16} /></>}</button>
+    {error && <p role="alert" className="form-note" data-testid="status-form-error">{error}</p>}
     <p className="form-note">Your details are used only to respond to this enquiry. No prices are shown online — we quote for your specific operation.</p>
   </form>;
 }
@@ -127,11 +159,11 @@ function App() {
     }, 500);
   }
   const gallery = [
-    { image: '/power-tiller-18hp.webp', label: 'Field-ready equipment', product: products[4] },
-    { image: '/workshop-machinery.jpg', label: 'The work behind the work', product: products[11] },
-    { image: '/rotary-soil-attachment.jpg', label: 'Power in the soil', product: products[10] },
-    { image: '/multipurpose-thrasher.png', label: 'Harvest with less loss', product: products[0] },
-    { image: '/feed-mixer-processor.webp', label: 'Made for processing', product: products[6] },
+    { image: products[0].image, label: 'Multipurpose threshing', product: products[0] },
+    { image: products[2].image, label: 'Rice milling', product: products[2] },
+    { image: products[4].image, label: '13HP field power', product: products[4] },
+    { image: products[8].image, label: 'Solar-powered irrigation', product: products[8] },
+    { image: products[11].image, label: 'Electric grain grinding', product: products[11] },
   ];
   return <div className="site-shell grain" id="home">
     <Header open={menuOpen} setOpen={setMenuOpen} />

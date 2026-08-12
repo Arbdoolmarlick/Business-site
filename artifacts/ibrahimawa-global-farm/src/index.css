@@ -145,12 +145,18 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .reason p { margin: 0; color: hsl(var(--muted-foreground)); line-height: 1.65; font-size: .9rem; }
 .workshop-image { min-height: 600px; border-radius: 2px; background: linear-gradient(0deg, rgba(15,43,30,.2), transparent), url('/workshop-machinery.jpg') center/cover; }
 .gallery { background: hsl(39 38% 90%); }
+/* The gallery uses a light background, so override the light-on-dark section heading styles. */
+.gallery .section-heading { color: hsl(var(--foreground)); }
+.gallery .section-heading .eyebrow { color: hsl(var(--accent)); }
+.gallery .section-heading h2 { color: hsl(var(--foreground)); }
+.gallery .section-heading p { color: hsl(var(--muted-foreground)); }
 .gallery-grid { display: grid; grid-template-columns: 1.1fr .8fr .8fr; grid-template-rows: 220px 220px; gap: 12px; }
 .gallery-item { position: relative; overflow: hidden; border: 0; padding: 0; cursor: pointer; background: hsl(var(--primary)); }
 .gallery-item:first-child { grid-row: span 2; }
 .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease, opacity .3s ease; }
+.gallery-item::after { content: ''; position: absolute; inset: 42% 0 0; pointer-events: none; background: linear-gradient(transparent, rgb(6 23 16 / .78)); }
 .gallery-item:hover img { transform: scale(1.06); opacity: .8; }
-.gallery-item span { position: absolute; inset: auto 14px 14px; color: white; font-family: var(--app-font-mono); font-size: .62rem; text-align: left; text-transform: uppercase; letter-spacing: .08em; }
+.gallery-item span { position: absolute; z-index: 1; inset: auto 14px 14px; color: white; font-family: var(--app-font-mono); font-size: .62rem; text-align: left; text-transform: uppercase; letter-spacing: .08em; text-shadow: 0 1px 3px rgb(0 0 0 / .65); }
 .cta-band { padding: 95px 0; background: hsl(var(--accent)); color: hsl(var(--primary-foreground)); }
 .cta-grid { display: flex; justify-content: space-between; align-items: end; gap: 40px; }
 .cta-band h2 { max-width: 700px; font-size: clamp(3rem, 7vw, 7rem); line-height: .86; letter-spacing: -.05em; font-weight: 400; margin: 15px 0 0; }
@@ -203,11 +209,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
 @media (max-width: 800px) {
   .container-wide { width: min(100% - 34px, 600px); }
+  .nav { gap: 16px; }
+  .brand-mark { width: 72px; height: 72px; }
+  .brand-name { font-size: 1.02rem; }
   .desktop-links, .topbar .button-light { display: none; }
   .menu-toggle { display: block; }
   .mobile-menu { display: grid; gap: 18px; padding: 25px; margin-top: 15px; background: hsl(var(--primary)); border: 1px solid hsl(var(--primary-foreground) / .15); }
   .hero, .hero-grid { min-height: 690px; }
-  .hero-grid { display: block; padding-top: 180px; }
+  .hero-grid { display: block; padding-top: 128px; }
   .hero h1 { font-size: clamp(3.7rem, 17vw, 6.3rem); }
   .hero-caption { margin-top: 50px; }
   .section-pad { padding: 78px 0; }
@@ -230,6 +239,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .map-pin { left: 52%; top: 43%; }
 }
 @media (max-width: 480px) {
+  .brand-mark { width: 68px; height: 68px; }
+  .brand-name { font-size: .99rem; }
   .hero-actions { display: grid; }
   .hero-actions a { width: 100%; }
   .form-row { grid-template-columns: 1fr; gap: 0; }

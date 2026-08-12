@@ -4,8 +4,10 @@ import { resolve } from 'node:path';
 import test from 'node:test';
 
 const siteRoot = resolve(import.meta.dirname, '..');
+const workspaceRoot = resolve(siteRoot, '..', '..');
 const appSource = readFileSync(resolve(siteRoot, 'src', 'App.tsx'), 'utf8');
 const page = readFileSync(resolve(siteRoot, 'index.html'), 'utf8');
+const enquiryApi = readFileSync(resolve(workspaceRoot, 'api', 'inquiry.ts'), 'utf8');
 
 test('site assets referenced by the app are present', () => {
   for (const asset of [
@@ -31,4 +33,12 @@ test('published contact details and favicon are configured', () => {
   assert.match(appSource, /https:\/\/wa\.me\/2347047197737/);
   assert.match(appSource, /https:\/\/maps\.app\.goo\.gl\/HQAMXdP8y18sVP3h9/);
   assert.match(page, /href="\/igaf-mark\.svg"/);
+});
+
+test('contact form posts to a server-side validated enquiry endpoint', () => {
+  assert.match(appSource, /fetch\('\/api\/inquiry'/);
+  assert.match(enquiryApi, /process\.env\.RESEND_API_KEY/);
+  assert.match(enquiryApi, /process\.env\.RESEND_FROM_EMAIL/);
+  assert.match(enquiryApi, /https:\/\/api\.resend\.com\/emails/);
+  assert.match(enquiryApi, /reply_to: validEmail/);
 });
