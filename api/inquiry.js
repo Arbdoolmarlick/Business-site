@@ -1,31 +1,21 @@
-type VercelRequest = {
-  method?: string;
-  body?: unknown;
-};
-
-type VercelResponse = {
-  status: (statusCode: number) => VercelResponse;
-  json: (body: unknown) => void;
-  setHeader: (name: string, value: string) => void;
-};
-
 const MAX_LENGTHS = { name: 100, phone: 40, email: 254, interest: 120, message: 3_000 };
-// Access the runtime environment without requiring Node's ambient TypeScript types.
-// Vercel provides globalThis.process at runtime, but its API compiler may omit @types/node.
-const environment = (globalThis as unknown as { process?: { env?: Record<string, string | undefined> } }).process?.env;
+
+// Vercel provides process.env at runtime. Reading it through globalThis keeps
+// this route independent from TypeScript's Node ambient declarations.
+const environment = globalThis.process?.env;
 const recipient = environment?.INQUIRY_TO_EMAIL || "ibrahimawafarms@gmail.com";
 
-function getText(value: unknown, field: keyof typeof MAX_LENGTHS): string | null {
+function getText(value, field) {
   if (typeof value !== "string") return null;
   const text = value.trim();
   return text.length > 0 && text.length <= MAX_LENGTHS[field] ? text : null;
 }
 
-function escapeHtml(value: string): string {
+function escapeHtml(value) {
   return value.replace(/[&<>"']/g, (character) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[character] ?? character);
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+module.exports = async function handler(req, res) {
   res.setHeader("Allow", "POST");
   res.setHeader("Cache-Control", "no-store");
   if (req.method !== "POST") return res.status(405).json({ message: "Method not allowed." });
@@ -35,7 +25,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ message: "Invalid enquiry data." });
   }
 
-  const { name, phone, email, interest, message } = body as Record<string, unknown>;
+  const { name, phone, email, interest, message } = body;
   const validName = getText(name, "name");
   const validPhone = getText(phone, "phone");
   const validEmail = getText(email, "email");
@@ -75,4 +65,4 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   return res.status(200).json({ message: "Enquiry sent." });
-}
+};
