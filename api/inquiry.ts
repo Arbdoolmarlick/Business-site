@@ -10,7 +10,10 @@ type VercelResponse = {
 };
 
 const MAX_LENGTHS = { name: 100, phone: 40, email: 254, interest: 120, message: 3_000 };
-const recipient = process.env.INQUIRY_TO_EMAIL || "ibrahimawafarms@gmail.com";
+// Access the runtime environment without requiring Node's ambient TypeScript types.
+// Vercel provides globalThis.process at runtime, but its API compiler may omit @types/node.
+const environment = (globalThis as unknown as { process?: { env?: Record<string, string | undefined> } }).process?.env;
+const recipient = environment?.INQUIRY_TO_EMAIL || "ibrahimawafarms@gmail.com";
 
 function getText(value: unknown, field: keyof typeof MAX_LENGTHS): string | null {
   if (typeof value !== "string") return null;
@@ -45,8 +48,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ message: "Please provide a valid name, phone number, email address, machine interest, and message." });
   }
 
-  const apiKey = process.env.RESEND_API_KEY;
-  const from = process.env.RESEND_FROM_EMAIL;
+  const apiKey = environment?.RESEND_API_KEY;
+  const from = environment?.RESEND_FROM_EMAIL;
   if (!apiKey || !from) {
     console.error("Resend email configuration is missing.");
     return res.status(503).json({ message: "Enquiries are temporarily unavailable. Please call or email our team." });
