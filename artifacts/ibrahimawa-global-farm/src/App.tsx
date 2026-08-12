@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
-import { ArrowDownRight, ArrowUp, Check, ChevronRight, Clock3, Factory, HardHat, Leaf, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Sparkles, Users, X } from 'lucide-react';
+import { ArrowDownRight, ArrowUp, Check, ChevronRight, Clock3, Cog, Factory, Headphones, Leaf, Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Sparkles, Sprout, Truck, Users, Wrench, X } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 type Product = { name: string; description: string; image: string };
 
@@ -20,11 +21,13 @@ const products: Product[] = [
   { name: 'Multipurpose Cleaner', description: 'Remove dust, chaff and unwanted material for cleaner, market-ready grain.', image: '/multipurpose-cleaner.jpeg' },
 ];
 
-const reasons = [
-  ['01', 'Built for the field', 'We focus on equipment that earns its place in real Nigerian farms, not machinery that only looks good in a catalogue.'],
-  ['02', 'Practical guidance', 'Tell us your crop, scale and ambition. We will help you make a clear equipment decision.'],
-  ['03', 'A partner beyond delivery', 'From first enquiry to keeping your operation moving, our team stays close to the work.'],
-  ['04', 'Productivity with purpose', 'Better tools should mean less strain, less waste and more value kept in the hands of producers.'],
+const services: [LucideIcon, string, string][] = [
+  [Sprout, 'Sales of agro machineries', 'Dependable equipment selected for the crops, scale and work on your farm.'],
+  [Headphones, 'Technical support', 'Clear, practical guidance from first question through confident use.'],
+  [Wrench, 'Machinery maintenance', 'Keep your operation moving with responsive care and maintenance support.'],
+  [Leaf, 'Farming advisory services', 'Make better decisions with advice grounded in local farming realities.'],
+  [Cog, 'Spare parts supply', 'The right parts to reduce downtime and keep essential machines working.'],
+  [Truck, 'Delivery services (nationwide)', 'Reliable delivery that brings your equipment closer, wherever you farm in Nigeria.'],
 ];
 
 function useReveal() {
@@ -170,7 +173,7 @@ function App() {
     <main>
       <section className="hero">
         <div className="container-wide hero-grid">
-          <div className="reveal is-visible"><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>Agricultural machinery / Nigeria</span><h1>Make the<br /><em>next harvest</em><br />count.</h1><p className="hero-copy">IGAF connects ambitious farmers and processors with dependable equipment for the work that feeds communities.</p><div className="hero-actions"><a className="button-primary" href="#products" data-testid="link-hero-products">Explore our machinery <ArrowDownRight size={16} /></a><a className="button-light" href="#contact" data-testid="link-hero-contact">Talk to our team</a></div></div>
+          <div className="reveal is-visible"><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>Agricultural machinery / Nigeria</span><h1>Modern Machinery.<br /><em>Smarter Farming.</em><br />Better Results.</h1><p className="hero-copy">IGAF connects ambitious farmers and processors with dependable equipment for the work that feeds communities.</p><div className="hero-actions"><a className="button-primary" href="#products" data-testid="link-hero-products">Explore our machinery <ArrowDownRight size={16} /></a><a className="button-light" href="#contact" data-testid="link-hero-contact">Talk to our team</a></div></div>
           <div className="hero-caption reveal is-visible delay-2"><strong>01</strong><span>Rooted in Nigerian agriculture.<br />Built for what comes next.</span></div>
         </div>
       </section>
@@ -181,7 +184,7 @@ function App() {
       </section>
       <section className="dark-section section-pad" id="products"><div className="container-wide"><div className="section-heading reveal"><div><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>The equipment</span><h2>Machines that<br /><em>pull their weight.</em></h2></div><p>Not every farm needs the same answer. Explore the range, then tell us what your work looks like.</p></div><div className="products-grid">{products.map((product, index) => <ProductCard key={product.name} product={product} index={index} onOpen={openEnquiry} />)}</div></div></section>
       <section className="split-story" id="why"><div className="story-image" role="img" aria-label="Farmer operating a power tiller in a Nigerian field" /><div className="story-copy"><span className="eyebrow">Why choose IGAF</span><h2>Progress is<br /><em>personal.</em></h2><p>For a farmer, a machine is never just a machine. It is time returned to the day. It is more produce cleaned, more land prepared, more work possible with the same hands.</p><p>That is why our approach starts with listening. We match the equipment to your operation, your people and the reality on the ground.</p><a href="#contact" className="button-ghost" style={{ marginTop: 18 }} data-testid="link-story-contact">Find your fit <ArrowDownRight size={15} /></a></div></section>
-      <section className="section-pad intro"><div className="container-wide reasons"><div className="reveal"><span className="eyebrow">The IGAF difference</span><h2>Useful is<br /><em>beautiful.</em></h2><p style={{ color: 'hsl(var(--muted-foreground))', lineHeight: 1.7, maxWidth: 350 }}>Trust is built in the details: the right recommendation, a clear answer, and equipment that keeps showing up for the work.</p></div><div className="reason-list reveal delay-1">{reasons.map(([number, title, copy]) => <div className="reason" key={number}><span className="reason-index">{number}</span><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div></div></section>
+      <section className="section-pad services-section"><div className="container-wide services-layout"><div className="reveal"><span className="eyebrow">Our services</span><h2>Everything your<br /><em>work needs.</em></h2><p className="services-intro">From choosing the right machine to keeping it in the field, IGAF is here for the full journey.</p></div><div className="services-grid reveal delay-1">{services.map(([Icon, title, copy]) => <article className="service-card" key={title}><span className="service-icon"><Icon size={23} strokeWidth={1.7} /></span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</div></div></section>
       <section className="split-story" style={{ background: 'hsl(var(--background))' }}><div className="story-copy" style={{ background: 'hsl(147 35% 22%)', color: 'hsl(var(--primary-foreground))' }}><span className="eyebrow" style={{ color: 'hsl(var(--secondary))' }}>The bigger picture</span><h2>Productivity<br />that leaves<br /><em>something behind.</em></h2><p style={{ color: 'hsl(var(--primary-foreground) / .68)' }}>From solar-powered water to efficient processing, the right machinery can help farms grow while using resources with care.</p><div style={{ display: 'flex', gap: 20, marginTop: 34 }}><div><Leaf color="hsl(var(--secondary))" size={22} /><p className="mono" style={{ color: 'hsl(var(--primary-foreground) / .7)' }}>Resource-aware</p></div><div><Factory color="hsl(var(--secondary))" size={22} /><p className="mono" style={{ color: 'hsl(var(--primary-foreground) / .7)' }}>Built to work</p></div></div></div><div className="workshop-image" role="img" aria-label="Close-up of agricultural machinery in a workshop" /></section>
       <section className="gallery section-pad" id="gallery"><div className="container-wide"><div className="section-heading reveal"><div><span className="eyebrow">On the ground</span><h2>A closer look at<br /><em>the work.</em></h2></div><p>See the environments and details that shape our view of agricultural equipment.</p></div><div className="gallery-grid">{gallery.map((item, index) => <button className="gallery-item reveal" key={`${item.label}-${index}`} onClick={() => setLightbox(item.product)} data-testid={`button-gallery-${index + 1}`}><img src={item.image} alt={item.label} /><span>{item.label} <ChevronRight size={13} style={{ verticalAlign: 'middle' }} /></span></button>)}</div></div></section>
       <section className="cta-band"><div className="container-wide cta-grid reveal"><div><span className="eyebrow">Your next move</span><h2>Let’s talk about<br />what could work.</h2></div><a className="button-light" href="#contact" data-testid="link-cta-contact">Start a conversation <ArrowDownRight size={16} /></a></div></section>
