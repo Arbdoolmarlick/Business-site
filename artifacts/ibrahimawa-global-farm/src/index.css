@@ -105,6 +105,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
 .brand-mark { display: block; width: 66px; height: 66px; flex: none; border-radius: 50%; box-shadow: 0 3px 12px rgba(0, 0, 0, .18); }
 .brand-name { font-weight: 700; font-size: .98rem; letter-spacing: .08em; line-height: 1.15; text-transform: uppercase; max-width: 220px; }
+.brand-registration { display: block; margin-top: 4px; font-size: .99em; font-weight: 600; letter-spacing: .1em; line-height: 1.2; }
 .desktop-links { display: flex; align-items: center; gap: 25px; }
 .desktop-links a, .mobile-menu a { color: inherit; text-decoration: none; font-size: .77rem; font-weight: 600; opacity: .78; transition: opacity .2s ease, color .2s ease; }
 .desktop-links a:hover, .mobile-menu a:hover { opacity: 1; color: hsl(var(--secondary)); }

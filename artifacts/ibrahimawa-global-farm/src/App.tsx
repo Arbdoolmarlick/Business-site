@@ -56,7 +56,7 @@ function Header({ open, setOpen }: { open: boolean; setOpen: (value: boolean) =>
       <div className="container-wide">
         <nav className="nav" aria-label="Main navigation">
           <a className="brand" href="#home" data-testid="link-brand">
-            <img className="brand-mark" src="/igaf-mark.svg" alt="" /><span className="brand-name">Ibrahimawa<br />Global & Farm<br />(IGAF) Limited</span>
+            <img className="brand-mark" src="/igaf-mark.svg" alt="" /><span className="brand-name">Ibrahimawa<br />Global & Farm<br />(IGAF) Limited<small className="brand-registration">RC NO: 7384062</small></span>
           </a>
           <div className="desktop-links">
             {links.map(([label, id]) => <a key={id} href={`#${id}`} data-testid={`link-nav-${id}`}>{label}</a>)}
