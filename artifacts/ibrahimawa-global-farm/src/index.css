@@ -127,7 +127,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .stat { padding: 25px 20px 0 0; border-right: 1px solid hsl(var(--border)); margin-right: 20px; }
 .stat:last-child { border-right: 0; margin-right: 0; }
 .stat strong { display: block; color: hsl(var(--primary)); font-size: clamp(2rem, 4vw, 3.5rem); font-family: var(--app-font-serif); font-weight: 400; }
-.stat span { color: hsl(var(--muted-foreground)); font-size: .82rem; }
+.stat span { color: hsl(var(--muted-foreground)); display: block; font-size: .94rem; line-height: 1.45; margin-top: 5px; }
 .dark-section { background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); }
 .section-heading { display: flex; justify-content: space-between; gap: 30px; align-items: end; margin-bottom: 52px; }
 .section-heading h2 { max-width: 660px; margin-bottom: 0; }
